@@ -1,0 +1,25 @@
+version: '3'
+services:
+  mysql:
+    image: mysql
+    environment:
+      - MYSQL_DATABASE=secure_db
+      - MYSQL_USER=secure_user
+      - MYSQL_PASSWORD=s3cure_p4ssw0rd
+      - MYSQL_ROOT_PASSWORD=r00t_password
+  vulnerable_rails:
+    build: .
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/vulnerable_rails
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+    environment:
+      - DATABASE_HOST=mysql
+      - DATABASE_PASSWORD=s3cure_p4ssw0rd
+      - DATABASE_USERNAME=secure_user
+      - RAILS_ENV=production
+      - SECRET_KEY_BASE=secret_key
+

@@ -5,14 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-gem 'rails', '~> 5.1.5'
+gem 'faker'
+gem 'mysql2', '~> 0.4.9'
 gem 'puma', '~> 3.7'
-
-group :development, :test do
-  gem 'sqlite3', '~> 1.3'
-end
-
-
-group :production do
-  gem 'mysql2', '~> 0.4.9'
-end
+gem 'rails', '~> 5.1.5'

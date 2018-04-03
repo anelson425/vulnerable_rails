@@ -1,18 +1,16 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
-#
 default: &default
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  adapter: <%= ENV['DATABASE_ADAPTER'] || 'mysql2' %>
+  database: <%= ENV['DATABASE_NAME'] || 'secure_db' %>
+  pool: <%= ENV['DATABASE_POOL'] || '5' %>
+  timeout: <%= ENV['DATABASE_TIMEOUT'] || '5000' %>
+  host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
+  username: <%= ENV['DATABASE_USERNAME'] || 'root' %>
+  password: <%= ENV['DATABASE_PASSWORD'] || 'password' %>
+  encoding: <%= ENV['DATABASE_ENCODING'] || 'utf8' %>
+  reconnect: true
 
 development:
   <<: *default
-  database: db/development.sqlite3
 
 production:
   <<: *default
-  database: db/production.sqlite3

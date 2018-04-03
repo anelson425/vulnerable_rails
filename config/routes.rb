@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get '/injectable_users', to: 'users#injectable'
+  get '/not_injectable_users', to: 'users#not_injectable'
 end
